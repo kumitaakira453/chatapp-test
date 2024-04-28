@@ -1,0 +1,38 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static "main/css/talk_room.css" %}">
+{% endblock extra_style %}
+
+{% block header_title %}{{friend.username}}{% endblock header_title %}
+
+{% block talk_room %}
+<a href="{% url "friends" %}" class="back-button"><i class="fas fa-angle-left"></i></a>
+<a href="" class="reload-button">更新</a>
+{% endblock talk_room %}
+
+{% block content %}
+<div class="talk_room">
+    <ul class="chatboard">
+        {% for talk in talks %}
+        <li class=chatboard__item>
+            <p class="chatboard__username">
+                ＞{{talk.sender.username}}
+            </p>
+            <p class="chatboard__message">{{talk.message}}</p>
+            <p class="chatboard__time">
+                {{talk.time|date:"m/d"}}<br>
+                {{talk.time|date:"H:i"}}
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="{% url "talk_room" friend.id %}" method="POST" class="message-form">
+        {% csrf_token %}
+        {{form.message}}
+        <button class="message-form__submit">送信</button>
+    </form>
+</div>
+{% endblock content %}
+{% block footer %}{% endblock footer %}

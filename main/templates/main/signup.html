@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'main/css/signup.css' %}">
+{% endblock extra_style %}
+{% block header_title %}会員登録{% endblock header_title %}
+
+{% block content %}
+<form action="{% url 'signup' %}" method="POST" class="signup-form">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <button type="submit" class="signup-form__submit">送信</button>
+</form>
+{% endblock content %}
+{% block footer %}{% endblock footer %}
