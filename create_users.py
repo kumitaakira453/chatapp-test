@@ -5,10 +5,11 @@ import django
 from dateutil import tz
 from faker import Faker
 
+from main.models import Talk, User
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "chat_app.settings")
 django.setup()
 
-from main.models import Talk, User
 
 fakegen = Faker(["ja_JP"])
 

@@ -8,10 +8,13 @@
 {% block content %}
 <div class="friends">
     <ul class="friends-list">
-        {% for friend in friends  %}
+        {% for friend , _ , date in friends  %}
         <li class="friends-list__item">
             <a href="{% url "talk_room" friend.id %}" class="frieds-list__link">
-                <div class="friend-list__username">{{friend.username}}</div>
+                <div class="friend-list__username">
+                    {{friend.username}}<br>
+                    {{date}}
+                </div>
             </a>
         </li>
         {% endfor %}
